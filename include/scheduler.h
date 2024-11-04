@@ -17,7 +17,8 @@ public:
 
     void load_data(const std::string& filename);
 
-    void schedule_instructions();
+    void greedy_schedule_instructions();
+    void optimal_schedule_instructions();
 
     std::vector<std::pair<int, int>> get_schedule();
 };
