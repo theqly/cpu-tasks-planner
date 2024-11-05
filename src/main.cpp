@@ -1,6 +1,14 @@
+#include "scheduler.h"
 #include <iostream>
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    ctp::scheduler sched;
+
+    sched.load_data("file.txt");
+
+    sched.schedule_instructions();
+
+    sched.print_schedule();
+
     return 0;
 }

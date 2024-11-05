@@ -2,20 +2,28 @@
 #define INSTRUCTION_H
 #include <vector>
 
+namespace ctp {
+
 class instruction {
 private:
-    const int _id;
-    const int _num_allowed_modules;
-    std::vector<int> _allowed_modules;
+  int _id;
+  std::vector<int> _allowed_modules;
 public:
-    instruction(int id, const std::vector<int>& allowed_modules);
+  instruction(int id, std::vector<int>&& allowed_modules);
+  instruction(instruction&& other) noexcept;
 
-    bool is_runnable_on_module(int module);
+  instruction& operator=(instruction&& other) noexcept;
 
-    int get_id();
-    int get_num_allowed_modules();
-    std::vector<int> get_allowed_modules();
+  bool is_runnable_on_module(int module);
+
+  [[nodiscard]] int get_id() const;
+  [[nodiscard]] int get_num_allowed_modules() const;
+  [[nodiscard]] std::vector<int> get_allowed_modules() const;
 
 };
+
+}
+
+
 
 #endif //INSTRUCTION_H

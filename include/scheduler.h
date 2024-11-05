@@ -3,24 +3,43 @@
 #include <instruction.h>
 #include <string>
 
+namespace ctp {
+
+enum scheduling_strategy {
+  greedy,
+  optimal,
+};
+
 class scheduler {
 private:
-    int _num_modules;
-    int _num_instructions;
+  scheduling_strategy _strategy;
 
-    std::vector<bool> _module_used;
-    std::vector<instruction> _instructions;
-    std::vector<std::pair<int, int>> _schedule;
+  int _num_modules;
+  int _num_instructions;
+
+  std::vector<bool> _module_used;
+  std::vector<instruction> _instructions;
+  std::vector<std::pair<int, int>> _schedule;
+
+  void greedy_schedule_instructions();
+  void optimal_schedule_instructions();
 
 public:
-    scheduler();
+  scheduler();
 
-    void load_data(const std::string& filename);
+  void load_data(const std::string& filename);
 
-    void greedy_schedule_instructions();
-    void optimal_schedule_instructions();
+  void schedule_instructions();
 
-    std::vector<std::pair<int, int>> get_schedule();
+  void set_scheduling_strategy(const scheduling_strategy& strategy);
+
+  [[nodiscard]] std::vector<std::pair<int, int>> get_schedule() const;
+
+  void print_schedule() const;
 };
+
+}
+
+
 
 #endif //SCHEDULER_H
