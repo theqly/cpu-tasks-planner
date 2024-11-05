@@ -48,6 +48,8 @@ void scheduler::schedule_instructions() {
   }
 }
 
+
+//O(M*log(M) + M*N)
 void scheduler::greedy_schedule_instructions() {
 
   std::fill(_module_used.begin(), _module_used.end(), false);
@@ -70,6 +72,7 @@ void scheduler::greedy_schedule_instructions() {
   }
 }
 
+//O(2^M)
 void scheduler::optimal_schedule_instructions() {
 
   std::fill(_module_used.begin(), _module_used.end(), false);
