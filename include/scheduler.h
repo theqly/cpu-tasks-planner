@@ -22,7 +22,10 @@ private:
   std::vector<std::pair<int, int>> _schedule;
 
   void greedy_schedule_instructions();
+
   void optimal_schedule_instructions();
+  //maybe not the best architectural solution
+  void dfs(int index, std::vector<std::pair<int, int>> &cur_schedule, std::vector<std::pair<int, int>> &best_schedule);
 
 public:
   scheduler();
